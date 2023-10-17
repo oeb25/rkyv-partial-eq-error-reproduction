@@ -1,6 +1,6 @@
-#![allow(unused, clippy::needless_borrow)]
+#![allow(unused, clippy::needless_borrow, clippy::no_effect)]
 
 use rkyv::AlignedVec;
 fn test() {
-    assert!(Some("") == Some(&""));
+    Some("") == Some(&"");
 }

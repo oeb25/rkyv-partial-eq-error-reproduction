@@ -1,5 +1,5 @@
-#![allow(unused, clippy::needless_borrow)]
+#![allow(unused, clippy::needless_borrow, clippy::no_effect)]
 
 fn test() {
-    assert!(Some("") == Some(&""));
+    Some("") == Some(&"");
 }

@@ -4,7 +4,7 @@ Rust automatically dereferences `&&str` when comparing against `&str` as exempli
 
 ```rs
 fn compiles() {
-    assert!(Some("") == Some(&""));
+    Some("") == Some(&"");
 }
 ```
 
@@ -13,7 +13,7 @@ However, adding any use of `rkyv` as in the following code:
 ```rs
 use rkyv::AlignedVec;
 fn does_not_compile() {
-    assert!(Some("") == Some(&""));
+    Some("") == Some(&"");
 }
 ```
 
@@ -21,10 +21,10 @@ Results in this error:
 
 ```rs
 error[E0277]: can't compare `Option<&str>` with `Option<&&str>`
- --> src/lib.rs:3:22
+ --> src/lib.rs:3:14
   |
-3 |     assert!(Some("") == Some(&""));
-  |                      ^^ no implementation for `Option<&str> == Option<&&str>`
+3 |     Some("") == Some(&"");
+  |              ^^ no implementation for `Option<&str> == Option<&&str>`
   |
   = help: the trait `PartialEq<Option<&&str>>` is not implemented for `Option<&str>`
   = help: the following other types implement trait `PartialEq<Rhs>`:
